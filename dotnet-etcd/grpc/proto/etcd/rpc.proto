@@ -737,6 +737,16 @@ message WatchRequest {
   }
 }
 
+message WatchPrefixRequest {
+  option (versionpb.etcd_version_msg) = "3.0";
+  // request_union is a request to either create a new watcher or cancel an existing watcher.
+  oneof request_union {
+    WatchPrefixCreateRequest create_request = 1;
+    WatchCancelRequest cancel_request = 2;
+    WatchProgressRequest progress_request = 3 [(versionpb.etcd_version_field)="3.4"];
+  }
+}
+
 message WatchCreateRequest {
   option (versionpb.etcd_version_msg) = "3.0";
 
@@ -784,6 +794,48 @@ message WatchCreateRequest {
 
   // fragment enables splitting large revisions into multiple watch responses.
   bool fragment = 8 [(versionpb.etcd_version_field)="3.4"];
+}
+
+message WatchPrefixCreateRequest {
+  option (versionpb.etcd_version_msg) = "3.0";
+
+  // key is the key to register for watching.
+  bytes prefix = 1;
+
+  // start_revision is an optional revision to watch from (inclusive). No start_revision is "now".
+  int64 start_revision = 2;
+
+  // progress_notify is set so that the etcd server will periodically send a WatchResponse with
+  // no events to the new watcher if there are no recent events. It is useful when clients
+  // wish to recover a disconnected watcher starting from a recent known revision.
+  // The etcd server may decide how often it will send notifications based on current load.
+  bool progress_notify = 3;
+
+  enum FilterType {
+    option (versionpb.etcd_version_enum) = "3.1";
+
+    // filter out put event.
+    NOPUT = 0;
+    // filter out delete event.
+    NODELETE = 1;
+  }
+
+  // filters filter the events at server side before it sends back to the watcher.
+  repeated FilterType filters = 4 [(versionpb.etcd_version_field)="3.1"];
+
+  // If prev_kv is set, created watcher gets the previous KV before the event happens.
+  // If the previous KV is already compacted, nothing will be returned.
+  bool prev_kv = 5 [(versionpb.etcd_version_field)="3.1"];
+
+  // If watch_id is provided and non-zero, it will be assigned to this watcher.
+  // Since creating a watcher in etcd is not a synchronous operation,
+  // this can be used ensure that ordering is correct when creating multiple
+  // watchers on the same stream. Creating a watcher with an ID already in
+  // use on the stream will cause an error to be returned.
+  int64 watch_id = 6 [(versionpb.etcd_version_field)="3.4"];
+
+  // fragment enables splitting large revisions into multiple watch responses.
+  bool fragment = 7 [(versionpb.etcd_version_field)="3.4"];
 }
 
 message WatchCancelRequest {

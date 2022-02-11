@@ -1098,5 +1098,225 @@ namespace dotnet_etcd
         }
 
         #endregion
+
+        #region Watch Range of prefixes
+
+        /// <summary>
+        /// Watches a prefix according to the specified watch request and
+        /// passes the watch response to the method provided.
+        /// </summary>
+        /// <param name="request">Watch Request containing prefix to be watched</param>
+        /// <param name="method">Method to which watch response should be passed on</param>
+        /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+        /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+        /// <param name="cancellationToken">An optional token for canceling the call.</param>
+        public Task WatchPrefix(WatchPrefixRequest request, Action<WatchResponse> method,
+            Grpc.Core.Metadata headers = null, DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => WatchRange(request.ToWatchRequest(), method, headers, deadline, cancellationToken);
+
+        /// <summary>
+        /// Watches a prefix according to the specified watch request and
+        /// passes the watch response to the methods provided. 
+        /// </summary>
+        /// <param name="request">Watch Request containing prefix to be watched</param>
+        /// <param name="methods">Methods to which watch response should be passed on</param>
+        /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+        /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+        /// <param name="cancellationToken">An optional token for canceling the call.</param>
+        public Task WatchPrefix(WatchPrefixRequest request, Action<WatchResponse>[] methods,
+            Grpc.Core.Metadata headers = null, DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => WatchRange(request.ToWatchRequest(), methods, headers, deadline, cancellationToken);
+
+        /// <summary>
+        /// Watches a prefix according to the specified watch request and
+        /// passes the minimal watch event data to the method provided. 
+        /// </summary>
+        /// <param name="request">Watch Request containing prefix to be watched</param>
+        /// <param name="method">Method to which minimal watch events data should be passed on</param>
+        /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+        /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+        /// <param name="cancellationToken">An optional token for canceling the call.</param>
+        public Task WatchPrefix(WatchPrefixRequest request, Action<WatchEvent[]> method,
+            Grpc.Core.Metadata headers = null, DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => WatchRange(request.ToWatchRequest(), method, headers, deadline, cancellationToken);
+
+        /// <summary>
+        /// Watches a prefix according to the specified watch request and
+        /// passes the minimal watch event data to the methods provided. 
+        /// </summary>
+        /// <param name="request">Watch Request containing prefix to be watched</param>
+        /// <param name="methods">Methods to which minimal watch events data should be passed on</param>
+        /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+        /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+        /// <param name="cancellationToken">An optional token for canceling the call.</param>
+        public Task WatchPrefix(WatchPrefixRequest request, Action<WatchEvent[]>[] methods,
+            Grpc.Core.Metadata headers = null, DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => WatchRange(request.ToWatchRequest(), methods, headers, deadline, cancellationToken);
+
+        /// <summary>
+        /// Watches the prefix according to the specified watch requests and
+        /// passes the watch response to the method provided.
+        /// </summary>
+        /// <param name="requests">Watch Requests containing prefixes to be watched</param>
+        /// <param name="method">Method to which watch response should be passed on</param>
+        /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+        /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+        /// <param name="cancellationToken">An optional token for canceling the call.</param>
+        public Task WatchPrefix(WatchPrefixRequest[] requests, Action<WatchResponse> method,
+            Grpc.Core.Metadata headers = null, DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => WatchRange(requests.ToWatchRequest(), method, headers, deadline, cancellationToken);
+
+        /// <summary>
+        /// Watches a prefix according to the specified watch requests and
+        /// passes the watch response to the methods provided. 
+        /// </summary>
+        /// <param name="requests">Watch Requests containing prefixes to be watched</param>
+        /// <param name="methods">Methods to which watch response should be passed on</param>
+        /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+        /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+        /// <param name="cancellationToken">An optional token for canceling the call.</param>
+        public Task WatchPrefix(WatchPrefixRequest[] requests, Action<WatchResponse>[] methods,
+            Grpc.Core.Metadata headers = null, DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => WatchRange(requests.ToWatchRequest(), methods, headers, deadline, cancellationToken);
+
+        /// <summary>
+        /// Watches a prefix according to the specified watch request and
+        /// passes the minimal watch event data to the method provided. 
+        /// </summary>
+        /// <param name="requests">Watch Requests containing prefixes to be watched</param>
+        /// <param name="method">Method to which minimal watch events data should be passed on</param>
+        /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+        /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+        /// <param name="cancellationToken">An optional token for canceling the call.</param>
+        public Task WatchPrefix(WatchPrefixRequest[] requests, Action<WatchEvent[]> method,
+            Grpc.Core.Metadata headers = null, DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => WatchRange(requests.ToWatchRequest(), method, headers, deadline, cancellationToken);
+
+        /// <summary>
+        /// Watches a prefix according to the specified watch requests and
+        /// passes the minimal watch event data to the methods provided. 
+        /// </summary>
+        /// <param name="requests">Watch Request containing prefixes to be watched</param>
+        /// <param name="methods">Methods to which minimal watch events data should be passed on</param>
+        /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+        /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+        /// <param name="cancellationToken">An optional token for canceling the call.</param>
+        public Task WatchPrefix(WatchPrefixRequest[] requests, Action<WatchEvent[]>[] methods,
+            Grpc.Core.Metadata headers = null, DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => WatchRange(requests.ToWatchRequest(), methods, headers, deadline, cancellationToken);
+
+        /// <summary>
+        /// Watches the specified prefix and passes the watch response to the method provided.
+        /// </summary>
+        /// <param name="prefix">Prefix to be watched</param>
+        /// <param name="method">Method to which watch response should be passed on</param>
+        /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+        /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+        /// <param name="cancellationToken">An optional token for canceling the call.</param>
+        public void WatchPrefix(string prefix, Action<WatchResponse> method, Grpc.Core.Metadata headers = null,
+            DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => WatchRange(prefix, method, headers, deadline, cancellationToken);
+
+        /// <summary>
+        /// Watches the specified prefix and passes the watch response to the methods provided.
+        /// </summary>
+        /// <param name="prefix">Prefix to be watched</param>
+        /// <param name="methods">Methods to which watch response should be passed on</param>
+        /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+        /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+        /// <param name="cancellationToken">An optional token for canceling the call.</param>
+        public void WatchPrefix(string prefix, Action<WatchResponse>[] methods, Grpc.Core.Metadata headers = null,
+            DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => WatchRange(prefix, methods, headers, deadline, cancellationToken);
+
+        /// <summary>
+        /// Watches the specified prefix and passes the minimal watch events data to the method provided.
+        /// </summary>
+        /// <param name="prefix">Prefix to be watched</param>
+        /// <param name="method">Method to which minimal watch events data should be passed on</param>
+        /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+        /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+        /// <param name="cancellationToken">An optional token for canceling the call.</param>
+        public void WatchPrefix(string prefix, Action<WatchEvent[]> method, Grpc.Core.Metadata headers = null,
+            DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => WatchRange(prefix, method, headers, deadline, cancellationToken);
+
+        /// <summary>
+        /// Watches the specified prefix and passes the minimal watch events data to the methods provided.
+        /// </summary>
+        /// <param name="prefix">Prefix to be watched</param>
+        /// <param name="methods">Methods to which minimal watch events data should be passed on</param>
+        /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+        /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+        /// <param name="cancellationToken">An optional token for canceling the call.</param>
+        public void WatchPrefix(string prefix, Action<WatchEvent[]>[] methods, Grpc.Core.Metadata headers = null,
+            DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => WatchRange(prefix, methods, headers, deadline, cancellationToken);
+
+        /// <summary>
+        /// Watches the specified prefix and passes the watch response to the method provided.
+        /// </summary>
+        /// <param name="prefixes">Prefixes to be watched</param>
+        /// <param name="method">Method to which watch response should be passed on</param>
+        /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+        /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+        /// <param name="cancellationToken">An optional token for canceling the call.</param>
+        public void WatchPrefix(string[] prefixes, Action<WatchResponse> method, Grpc.Core.Metadata headers = null,
+            DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => WatchRange(prefixes, method, headers, deadline, cancellationToken);
+
+        /// <summary>
+        /// Watches the specified prefix and passes the watch response to the method provided.
+        /// </summary>
+        /// <param name="prefixes">Prefixes to be watched</param>
+        /// <param name="methods">Methods to which watch response should be passed on</param>
+        /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+        /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+        /// <param name="cancellationToken">An optional token for canceling the call.</param>
+        public void WatchPrefix(string[] prefixes, Action<WatchResponse>[] methods, Grpc.Core.Metadata headers = null,
+            DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => WatchRange(prefixes, methods, headers, deadline, cancellationToken);
+
+        /// <summary>
+        /// Watches the specified prefix and passes the minimal watch events data to the method provided.
+        /// </summary>
+        /// <param name="prefixes">Prefixes to be watched</param>
+        /// <param name="method">Method to which minimal watch events data should be passed on</param>
+        /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+        /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+        /// <param name="cancellationToken">An optional token for canceling the call.</param>
+        public void WatchPrefix(string[] prefixes, Action<WatchEvent[]> method, Grpc.Core.Metadata headers = null,
+            DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => WatchRange(prefixes, method, headers, deadline, cancellationToken);
+
+        /// <summary>
+        /// Watches the specified prefix and passes the minimal watch events data to the method provided.
+        /// </summary>
+        /// <param name="prefixes">Prefixes to be watched</param>
+        /// <param name="methods">Methods to which minimal watch events data should be passed on</param>
+        /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
+        /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
+        /// <param name="cancellationToken">An optional token for canceling the call.</param>
+        public void WatchPrefix(string[] prefixes, Action<WatchEvent[]>[] methods, Grpc.Core.Metadata headers = null,
+            DateTime? deadline = null,
+            CancellationToken cancellationToken = default)
+            => WatchRange(prefixes, methods, headers, deadline, cancellationToken);
+
+        #endregion
     }
 }

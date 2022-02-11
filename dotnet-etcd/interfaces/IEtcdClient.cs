@@ -141,5 +141,21 @@ namespace dotnet_etcd.interfaces
         Task WatchRange(WatchRequest[] requests, Action<WatchEvent[]>[] methods, Grpc.Core.Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default);
         Task WatchRange(WatchRequest[] requests, Action<WatchResponse> method, Grpc.Core.Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default);
         Task WatchRange(WatchRequest[] requests, Action<WatchResponse>[] methods, Grpc.Core.Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default);
+        void WatchPrefix(string prefix, Action<WatchEvent[]> method, Grpc.Core.Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default);
+        void WatchPrefix(string prefix, Action<WatchEvent[]>[] methods, Grpc.Core.Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default);
+        void WatchPrefix(string prefix, Action<WatchResponse> method, Grpc.Core.Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default);
+        void WatchPrefix(string prefix, Action<WatchResponse>[] methods, Grpc.Core.Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default);
+        void WatchPrefix(string[] prefixes, Action<WatchEvent[]> method, Grpc.Core.Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default);
+        void WatchPrefix(string[] prefixes, Action<WatchEvent[]>[] methods, Grpc.Core.Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default);
+        void WatchPrefix(string[] prefixes, Action<WatchResponse> method, Grpc.Core.Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default);
+        void WatchPrefix(string[] prefixes, Action<WatchResponse>[] methods, Grpc.Core.Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default);
+        Task WatchPrefix(WatchPrefixRequest request, Action<WatchEvent[]> method, Grpc.Core.Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default);
+        Task WatchPrefix(WatchPrefixRequest request, Action<WatchEvent[]>[] methods, Grpc.Core.Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default);
+        Task WatchPrefix(WatchPrefixRequest request, Action<WatchResponse> method, Grpc.Core.Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default);
+        Task WatchPrefix(WatchPrefixRequest request, Action<WatchResponse>[] methods, Grpc.Core.Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default);
+        Task WatchPrefix(WatchPrefixRequest[] requests, Action<WatchEvent[]> method, Grpc.Core.Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default);
+        Task WatchPrefix(WatchPrefixRequest[] requests, Action<WatchEvent[]>[] methods, Grpc.Core.Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default);
+        Task WatchPrefix(WatchPrefixRequest[] requests, Action<WatchResponse> method, Grpc.Core.Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default);
+        Task WatchPrefix(WatchPrefixRequest[] requests, Action<WatchResponse>[] methods, Grpc.Core.Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default);
     }
 }
